@@ -1,0 +1,29 @@
+/// Mixin to manage responsive breakpoints
+
+@mixin responsive($screen-sizes...) {
+  $keys: map-keys($breakpoints);
+
+  @debug $keys;
+  @if $screen-sizes == null or length($screen-sizes) == 0 {
+    //@debug "Please provide at least one of the available breakpoints: #{$keys}";
+    @error "Please provide at least one of the available breakpoints: #{$keys}";
+  }
+
+  @each $size in $screen-sizes {
+    $bounds: map-get($breakpoints, $size);
+
+    // if the key doesn't exist in the map
+    @if not $bounds {
+      @error "Unfortunately, no value could be retrieved for `#{$size}`. "
+          + "Available breakpoints are: `#{$keys}`.";
+    }
+
+    $bounds: map-get($breakpoints, $size);
+    //@debug inspect($condition);
+
+    // Prints a media query based on the value
+    @media #{inspect($bounds)} {
+      @content;
+    }
+  }
+}

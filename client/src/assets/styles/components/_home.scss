@@ -1,0 +1,18 @@
+.home {
+  padding: 100px 0;
+
+  &__info {
+    display: flex;
+    color: #7f8fa4;
+    justify-content: space-between;
+    margin: 10px auto;
+  }
+
+  &__error {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    color: orange;
+  }
+}

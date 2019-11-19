@@ -1,0 +1,22 @@
+version: "3"
+services:
+  frontend:
+    container_name: train-station-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: train-station/client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/usr/src/app
+  backend:
+    container_name: train-station-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: train-station/server
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./server:/usr/src/app
